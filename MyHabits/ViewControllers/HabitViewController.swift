@@ -179,10 +179,10 @@ class HabitViewController: UIViewController {
     
     @objc private func dateChanged() {
         let formatter = DateFormatter()
-            formatter.locale = Locale(identifier: "ru_RU")
-            formatter.timeStyle = .short
-            let timeString = formatter.string(from: datePicker.date)
-            timeValueLabel.text = timeString
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.timeStyle = .short
+        let timeString = formatter.string(from: datePicker.date)
+        timeValueLabel.text = timeString
     }
     
     @objc private func didTapColorCircle() {

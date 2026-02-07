@@ -54,10 +54,10 @@ class HabitsViewController: UIViewController {
     
     @objc func addHabit() {
         let habitVC = HabitViewController()
-            habitVC.title = "Создать"
-            let navVC = UINavigationController(rootViewController: habitVC)
-            navVC.modalPresentationStyle = .fullScreen
-            present(navVC, animated: true)
+        habitVC.title = "Создать"
+        let navVC = UINavigationController(rootViewController: habitVC)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
 }
 
