@@ -10,9 +10,22 @@
 		5C3B241D2F1E6DA000C619A3 /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MyHabits.app; path = "/Users/evgeniapanfilova/Documents/ios_course/MyHabits/build/Debug-iphoneos/MyHabits.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5C7331BC2F374DF7009FFD5B /* Exceptions for "MyHabits" folder in "MyHabits" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Info.plist,
+			);
+			target = 5C3B241C2F1E6DA000C619A3 /* MyHabits */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5C3B241F2F1E6DA000C619A3 /* MyHabits */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5C7331BC2F374DF7009FFD5B /* Exceptions for "MyHabits" folder in "MyHabits" target */,
+			);
 			path = MyHabits;
 			sourceTree = "<group>";
 		};
