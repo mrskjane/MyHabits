@@ -17,6 +17,8 @@ class HabitsViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupCollectionView()
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        collectionView.addGestureRecognizer(longPressGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,9 +62,53 @@ class HabitsViewController: UIViewController {
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
+    
+    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        let location = gesture.location(in: collectionView)
+        switch gesture.state {
+        case .began:
+            guard let indexPath = collectionView.indexPathForItem(at: location)
+            else { return }
+            guard indexPath.section == 1
+            else { return }
+            collectionView.beginInteractiveMovementForItem(at: indexPath)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(location)
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
+    }
 }
 
 extension HabitsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        canMoveItemAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        moveItemAt sourceIndexPath: IndexPath,
+                        to destinationIndexPath: IndexPath) {
+        guard sourceIndexPath.section == 1,
+              destinationIndexPath.section == 1 else { return }
+        
+        let movedHabit = HabitsStore.shared.habits.remove(at: sourceIndexPath.item)
+        HabitsStore.shared.habits.insert(movedHabit, at: destinationIndexPath.item)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath,
+                        toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath {
+        
+        if proposedIndexPath.section == 0 {
+            return IndexPath(item: 0, section: 1)
+        }
+        return proposedIndexPath
+    }
+
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
             return 2
