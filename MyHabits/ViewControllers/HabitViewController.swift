@@ -157,6 +157,7 @@ class HabitViewController: UIViewController {
             navigationItem.rightBarButtonItem?.title = "Сохранить"
         } else {
             textFieldName.text = nil
+            textFieldName.textColor = .systemBlue
             colorCircleView.backgroundColor = .orange
             datePicker.date = Date()
             dateChanged()
@@ -214,29 +215,25 @@ class HabitViewController: UIViewController {
     
     @objc func didTapDelete() {
         guard let habit = habit else { return }
-        
-        let alert = UIAlertController(
+        let message = "Вы хотите удалить привычку\n\"\(habit.name)\"?"
+        let avc = UIAlertController(
             title: "Удалить привычку",
-            message: "Вы хотите удалить привычку \"\(habit.name)\"?",
+            message: message,
             preferredStyle: .alert
         )
-        
-        let cancel = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        
-        let delete = UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
-            guard let self = self else { return }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        cancelAction.setValue(UIColor.systemBlue, forKey: "titleTextColor")
+        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
+            guard let self = self, let habit = self.habit else { return }
             
             if let index = HabitsStore.shared.habits.firstIndex(of: habit) {
                 HabitsStore.shared.habits.remove(at: index)
             }
-            self.dismissVC()
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
         }
-        
-        alert.addAction(cancel)
-        alert.addAction(delete)
-        
-        present(alert, animated: true)
+        avc.addAction(cancelAction)
+        avc.addAction(deleteAction)
+        present(avc, animated: true)
     }
 }
 
