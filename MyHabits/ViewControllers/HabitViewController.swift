@@ -15,7 +15,6 @@ class HabitViewController: UIViewController {
         let label = UILabel()
         label.text = "НАЗВАНИЕ"
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
-        label.textColor = .secondaryLabel
         return label
     }()
     
@@ -30,7 +29,6 @@ class HabitViewController: UIViewController {
     private lazy var labelColor: UILabel = {
         let label = UILabel()
         label.text = "ЦВЕТ"
-        label.textColor = .secondaryLabel
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         return label
     }()
@@ -46,7 +44,6 @@ class HabitViewController: UIViewController {
     private lazy var labelTime: UILabel = {
         let label = UILabel()
         label.text = "ВРЕМЯ"
-        label.textColor = .secondaryLabel
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         return label
     }()
@@ -149,6 +146,7 @@ class HabitViewController: UIViewController {
     
     private func configureForCurrentMode() {
         if let habit = habit {
+            textFieldName.textColor = habit.color
             textFieldName.text = habit.name
             colorCircleView.backgroundColor = habit.color
             datePicker.date = habit.date

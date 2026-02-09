@@ -36,22 +36,25 @@ class HabitDetailsViewController: UIViewController {
         navigationItem.title = habit?.name
         navigationItem.largeTitleDisplayMode = .never
         
+        let backButton = UIBarButtonItem(
+            title: "Сегодня",
+            style: .plain,
+            target: self,
+            action: #selector(backToToday))
+        backButton.tintColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1.0)
+        navigationItem.leftBarButtonItem = backButton
+        
         let editButton = UIBarButtonItem(
             title: "Править",
             style: .plain,
             target: self,
             action: #selector(editHabit))
-        
         editButton.tintColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1.0)
         navigationItem.rightBarButtonItem = editButton
-        
-        let backButton = UIBarButtonItem(
-            title: "Сегодня",
-            style: .plain,
-            target: self,
-            action: #selector(backAction))
-        backButton.tintColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1.0)
-        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func backToToday() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func editHabit() {
@@ -93,8 +96,12 @@ extension HabitDetailsViewController: UITableViewDelegate, UITableViewDataSource
         } else {
             cell.accessoryType = .none
         }
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   titleForHeaderInSection section: Int) -> String? {
+        return "АКТИВНОСТЬ"
     }
 }
 

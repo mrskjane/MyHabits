@@ -7,9 +7,6 @@ class HabitDetailsHeaderViewCell: UITableViewHeaderFooterView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "АКТИВНОСТЬ"
-        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        label.textColor = .systemGray
         return label
     }()
     

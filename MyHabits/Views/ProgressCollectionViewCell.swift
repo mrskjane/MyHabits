@@ -30,8 +30,15 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .white
+        backgroundColor = .clear
+        contentView.backgroundColor = .secondarySystemGroupedBackground
         contentView.layer.cornerRadius = 8
+        contentView.layer.masksToBounds = true
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.05
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowRadius = 4
+        layer.masksToBounds = false
         setupLayout()
     }
     
@@ -40,7 +47,6 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupLayout() {
-        contentView.backgroundColor = .secondarySystemBackground
         contentView.layer.cornerRadius = 8
         contentView.addSubviews([textLabel, percentLabel, progressView])
         NSLayoutConstraint.activate([

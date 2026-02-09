@@ -55,7 +55,7 @@ class InfoViewController: UIViewController {
     }
     
     private func fillData() {
-        let infoText = Content.makeContent()
+        let infoText = Content.info
         for (index, text) in infoText.enumerated() {
             let label = UILabel()
             label.text = text

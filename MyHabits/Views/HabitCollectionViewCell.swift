@@ -40,6 +40,15 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .clear
+        contentView.backgroundColor = .secondarySystemGroupedBackground
+        contentView.layer.cornerRadius = 8
+        contentView.layer.masksToBounds = true
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.05
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowRadius = 4
+        layer.masksToBounds = false
         setupLayout()
     }
     
@@ -79,7 +88,6 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     private func setupLayout() {
         contentView.addSubviews([nameLabel, timeLabel, counterLabel, statusButton])
-        contentView.backgroundColor = .secondarySystemBackground
         contentView.layer.cornerRadius = 8
         
         NSLayoutConstraint.activate([
@@ -98,6 +106,6 @@ class HabitCollectionViewCell: UICollectionViewCell {
             statusButton.widthAnchor.constraint(equalToConstant: 38),
             statusButton.heightAnchor.constraint(equalToConstant: 38)
         ])
-}
+    }
 }
 
