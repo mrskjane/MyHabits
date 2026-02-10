@@ -214,8 +214,8 @@ class HabitViewController: UIViewController {
     }
     
     @objc func didTapDelete() {
-        guard let habit = habit else { return }
-        let message = "Вы хотите удалить привычку\n\"\(habit.name)\"?"
+        guard let habitToDelete = habit else { return }
+        let message = "Вы хотите удалить привычку\n\"\(habitToDelete.name)\"?"
         let avc = UIAlertController(
             title: "Удалить привычку",
             message: message,
@@ -224,9 +224,9 @@ class HabitViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         cancelAction.setValue(UIColor.systemBlue, forKey: "titleTextColor")
         let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
-            guard let self = self, let habit = self.habit else { return }
+            guard let self = self else { return }
             
-            if let index = HabitsStore.shared.habits.firstIndex(of: habit) {
+            if let index = HabitsStore.shared.habits.firstIndex(of: habitToDelete) {
                 HabitsStore.shared.habits.remove(at: index)
             }
             self.navigationController?.popToRootViewController(animated: true)
