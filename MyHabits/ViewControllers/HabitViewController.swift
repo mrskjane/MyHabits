@@ -207,7 +207,6 @@ class HabitViewController: UIViewController {
                 date: datePicker.date,
                 color: colorCircleView.backgroundColor ?? .orange
             )
-            
             HabitsStore.shared.habits.append(newHabit)
         }
         dismissVC()

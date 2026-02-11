@@ -32,17 +32,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             green: 22/255,
             blue: 204/255,
             alpha: 1.0)
-        
         return tabBar
     }
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let winScene = (scene as? UIWindowScene) else { return }
-        
         let window = UIWindow(windowScene: winScene)
         window.rootViewController = createTabBar()
         window.makeKeyAndVisible()
-        
         self.window = window
         
         let navAppearance = UINavigationBarAppearance()

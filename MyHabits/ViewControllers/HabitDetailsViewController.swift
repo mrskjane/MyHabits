@@ -36,13 +36,14 @@ class HabitDetailsViewController: UIViewController {
         navigationItem.title = habit?.name
         navigationItem.largeTitleDisplayMode = .never
         
-        let backButton = UIBarButtonItem(
-            title: "Сегодня",
-            style: .plain,
-            target: self,
-            action: #selector(backToToday))
+        let backButton = UIButton()
+        backButton.setTitle("Сегодня", for: .normal)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
         backButton.tintColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1.0)
-        navigationItem.leftBarButtonItem = backButton
+        backButton.semanticContentAttribute = .forceLeftToRight
+        backButton.sizeToFit()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         
         let editButton = UIBarButtonItem(
             title: "Править",
@@ -51,10 +52,6 @@ class HabitDetailsViewController: UIViewController {
             action: #selector(editHabit))
         editButton.tintColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1.0)
         navigationItem.rightBarButtonItem = editButton
-    }
-    
-    @objc private func backToToday() {
-        navigationController?.popViewController(animated: true)
     }
     
     @objc func editHabit() {
