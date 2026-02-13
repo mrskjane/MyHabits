@@ -1,7 +1,7 @@
 
 import UIKit
 
-class HabitCollectionViewCell: UICollectionViewCell {
+final class HabitCollectionViewCell: UICollectionViewCell {
     
     static let id = "HabitCollectionViewCell"
     

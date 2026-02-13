@@ -1,7 +1,7 @@
 
 import UIKit
 
-class HabitsViewController: UIViewController {
+final class HabitsViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

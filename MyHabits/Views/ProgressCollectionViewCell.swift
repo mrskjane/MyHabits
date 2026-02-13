@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ProgressCollectionViewCell: UICollectionViewCell {
+final class ProgressCollectionViewCell: UICollectionViewCell {
     
     static let id = "ProgressCollectionViewCell"
     

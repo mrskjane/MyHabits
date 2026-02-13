@@ -1,7 +1,7 @@
 
 import UIKit
 
-class HabitDetailsViewController: UIViewController {
+final class HabitDetailsViewController: UIViewController {
     
     var habit: Habit!
     
@@ -36,13 +36,23 @@ class HabitDetailsViewController: UIViewController {
         navigationItem.title = habit?.name
         navigationItem.largeTitleDisplayMode = .never
         
-        let backButton = UIButton()
-        backButton.setTitle("Сегодня", for: .normal)
-        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        let accentColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1.0)
+        let backButton = UIButton(type: .system)
+        let arrowImage = UIImage(systemName: "chevron.left")?.withTintColor(accentColor, renderingMode: .alwaysOriginal)
+        var config = UIButton.Configuration.plain()
+        config.title = "Сегодня"
+        config.image = arrowImage
+        config.imagePlacement = .leading
+        config.imagePadding = 4
+        config.contentInsets = NSDirectionalEdgeInsets(
+            top: 6, leading: 10, bottom: 6, trailing: 14
+        )
+        config.baseForegroundColor = accentColor
+        backButton.configuration = config
+        backButton.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.9)
+        backButton.layer.cornerRadius = 18
+        backButton.clipsToBounds = true
         backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
-        backButton.tintColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1.0)
-        backButton.semanticContentAttribute = .forceLeftToRight
-        backButton.sizeToFit()
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         
         let editButton = UIBarButtonItem(
@@ -51,6 +61,8 @@ class HabitDetailsViewController: UIViewController {
             target: self,
             action: #selector(editHabit))
         editButton.tintColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1.0)
+        editButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 17)], for: .normal)
+        editButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 17)], for: .highlighted)
         navigationItem.rightBarButtonItem = editButton
     }
     

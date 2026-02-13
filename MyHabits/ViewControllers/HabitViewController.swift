@@ -1,7 +1,7 @@
 
 import UIKit
 
-class HabitViewController: UIViewController {
+final class HabitViewController: UIViewController {
     
     var habit: Habit? {
             didSet {

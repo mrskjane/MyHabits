@@ -1,7 +1,7 @@
 
 import UIKit
 
-class HabitDetailsHeaderViewCell: UITableViewHeaderFooterView {
+final class HabitDetailsHeaderViewCell: UITableViewHeaderFooterView {
     
     static let id = "HabitDetailsHeaderViewCell"
     
