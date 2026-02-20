@@ -3,22 +3,21 @@ import UIKit
 
 final class HabitViewController: UIViewController {
     
-    var habit: Habit? {
-            didSet {
-                if isViewLoaded {
-                    configureForCurrentMode()
-                }
-            }
-        }
+    enum Mode {
+        case create
+        case edit(habit: Habit)
+    }
     
-    private lazy var labelName: UILabel = {
+    private let mode: Mode
+    
+    private var labelName: UILabel = {
         let label = UILabel()
         label.text = "НАЗВАНИЕ"
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         return label
     }()
     
-    private lazy var textFieldName: UITextField = {
+    private var textFieldName: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Бегать по утрам, спать 8 часов и т.п."
         textField.font = UIFont.systemFont(ofSize: 17)
@@ -26,7 +25,7 @@ final class HabitViewController: UIViewController {
         return textField
     }()
     
-    private lazy var labelColor: UILabel = {
+    private var labelColor: UILabel = {
         let label = UILabel()
         label.text = "ЦВЕТ"
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
@@ -41,21 +40,21 @@ final class HabitViewController: UIViewController {
         return button
     }()
     
-    private lazy var labelTime: UILabel = {
+    private var labelTime: UILabel = {
         let label = UILabel()
         label.text = "ВРЕМЯ"
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         return label
     }()
     
-    private lazy var timeTextTableView: UILabel = {
+    private var timeTextTableView: UILabel = {
         let label = UILabel()
         label.text = "Каждый день в "
         label.font = UIFont.systemFont(ofSize: 17)
         return label
     }()
     
-    private lazy var timeValueLabel: UILabel = {
+    private var timeValueLabel: UILabel = {
         let label = UILabel()
         label.text = "11:00 PM"
         label.textColor = .secondaryLabel
@@ -71,12 +70,21 @@ final class HabitViewController: UIViewController {
     }()
     
     private lazy var deleteButton: UIButton = {
-            let button = UIButton(type: .system)
-            button.setTitle("Удалить привычку", for: .normal)
-            button.setTitleColor(.systemRed, for: .normal)
-            button.addTarget(self, action: #selector(didTapDelete), for: .touchUpInside)
-            return button
-        }()
+        let button = UIButton(type: .system)
+        button.setTitle("Удалить привычку", for: .normal)
+        button.setTitleColor(.systemRed, for: .normal)
+        button.addTarget(self, action: #selector(didTapDelete), for: .touchUpInside)
+        return button
+    }()
+    
+    required init(mode: Mode) {
+        self.mode = mode
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,28 +153,30 @@ final class HabitViewController: UIViewController {
     }
     
     private func configureForCurrentMode() {
-        if let habit = habit {
+        switch mode {
+        case .edit(let habit):
             textFieldName.textColor = habit.color
             textFieldName.text = habit.name
             colorCircleView.backgroundColor = habit.color
             datePicker.date = habit.date
             dateChanged()
-
+            
             deleteButton.isHidden = false
             navigationItem.title = "Править"
             navigationItem.rightBarButtonItem?.title = "Сохранить"
-        } else {
+        case .create:
             textFieldName.text = nil
             textFieldName.textColor = .systemBlue
             colorCircleView.backgroundColor = .orange
             datePicker.date = Date()
             dateChanged()
-
+            
             deleteButton.isHidden = true
             navigationItem.title = "Создать"
             navigationItem.rightBarButtonItem?.title = "Создать"
         }
     }
+
     
     @objc private func dismissVC() {
         if let nav = navigationController, nav.viewControllers.first != self {
@@ -197,11 +207,12 @@ final class HabitViewController: UIViewController {
         }
         let color = colorCircleView.backgroundColor ?? .orange
         let date = datePicker.date
-        if let habit = habit {
-                    habit.name = name
-                    habit.date = date
-                    habit.color = color
-        } else {
+        switch mode {
+        case .edit(let habit):
+            habit.name = name
+            habit.date = date
+            habit.color = color
+        case .create:
             let newHabit = Habit(
                 name: name,
                 date: datePicker.date,
@@ -212,8 +223,9 @@ final class HabitViewController: UIViewController {
         dismissVC()
     }
     
+    
     @objc func didTapDelete() {
-        guard let habitToDelete = habit else { return }
+        guard case .edit(let habitToDelete) = mode else { return }
         let message = "Вы хотите удалить привычку\n\"\(habitToDelete.name)\"?"
         let avc = UIAlertController(
             title: "Удалить привычку",

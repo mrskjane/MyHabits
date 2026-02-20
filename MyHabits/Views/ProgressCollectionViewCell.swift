@@ -5,7 +5,7 @@ final class ProgressCollectionViewCell: UICollectionViewCell {
     
     static let id = "ProgressCollectionViewCell"
     
-    private lazy var textLabel: UILabel = {
+    private var textLabel: UILabel = {
         let label = UILabel()
         label.text = "Все получится!"
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
@@ -13,14 +13,14 @@ final class ProgressCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var percentLabel: UILabel = {
+    private var percentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         label.textColor = .secondaryLabel
         return label
     }()
     
-    private lazy var progressView: UIProgressView = {
+    private var progressView: UIProgressView = {
         let progress = UIProgressView(progressViewStyle: .default)
         progress.progressTintColor = UIColor(red: 161/255, green: 22/255, blue: 204/255, alpha: 1.0)
         progress.trackTintColor = .systemGray5

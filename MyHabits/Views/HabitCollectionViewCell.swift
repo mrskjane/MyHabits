@@ -7,21 +7,21 @@ final class HabitCollectionViewCell: UICollectionViewCell {
     
     var onTrackTap: (() -> Void)?
     
-    private lazy var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.numberOfLines = 2
         return label
     }()
     
-    private lazy var timeLabel: UILabel = {
+    private var timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = .secondaryLabel
         return label
     }()
     
-    private lazy var counterLabel: UILabel = {
+    private var counterLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.textColor = .secondaryLabel

@@ -5,10 +5,7 @@ final class HabitDetailsHeaderViewCell: UITableViewHeaderFooterView {
     
     static let id = "HabitDetailsHeaderViewCell"
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
+    private let titleLabel = UILabel ()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)

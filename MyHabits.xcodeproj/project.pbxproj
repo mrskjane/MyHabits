@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		5C7331BF2F389B5F009FFD5B /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MyHabits.app; path = "/Users/evgeniapanfilova/Documents/ios_course/MyHabits/build/Debug-iphoneos/MyHabits.app"; sourceTree = "<absolute>"; };
+		5C83FDB42F48615100418177 /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MyHabits.app; path = "/Users/evgeniapanfilova/Documents/ios_course/MyHabits/build/Debug-iphoneos/MyHabits.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -71,7 +71,7 @@
 			packageProductDependencies = (
 			);
 			productName = MyHabits;
-			productReference = 5C7331BF2F389B5F009FFD5B /* MyHabits.app */;
+			productReference = 5C83FDB42F48615100418177 /* MyHabits.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

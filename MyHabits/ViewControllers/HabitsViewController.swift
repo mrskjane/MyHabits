@@ -56,7 +56,7 @@ final class HabitsViewController: UIViewController {
     }
     
     @objc func addHabit() {
-        let habitVC = HabitViewController()
+        let habitVC = HabitViewController(mode: .create)
         habitVC.title = "Создать"
         let navVC = UINavigationController(rootViewController: habitVC)
         navVC.modalPresentationStyle = .fullScreen

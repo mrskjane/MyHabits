@@ -3,26 +3,26 @@ import UIKit
 
 final class InfoViewController: UIViewController {
     
-    private lazy var scrollView: UIScrollView = {
+    private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .systemBackground
         return scrollView
     }()
     
-    private lazy var contentView: UIView = {
+    private var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         return view
     }()
     
-    private lazy var titleLabel: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Привычка за 21 день"
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         return label
     }()
     
-    private lazy var bodyLabel: UILabel = {
+    private var bodyLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 17, weight: .regular)

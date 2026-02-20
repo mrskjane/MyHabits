@@ -67,8 +67,8 @@ final class HabitDetailsViewController: UIViewController {
     }
     
     @objc func editHabit() {
-        let vc = HabitViewController()
-        vc.habit = habit
+        guard let habit = habit else { return }
+        let vc = HabitViewController(mode: .edit(habit: habit))
         navigationController?.pushViewController(vc, animated: true)
     }
     
