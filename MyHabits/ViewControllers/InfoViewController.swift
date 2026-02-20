@@ -1,0 +1,83 @@
+
+import UIKit
+
+final class InfoViewController: UIViewController {
+    
+    private var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .systemBackground
+        return scrollView
+    }()
+    
+    private var contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        return view
+    }()
+    
+    private var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Привычка за 21 день"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        return label
+    }()
+    
+    private var bodyLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        label.text = """
+        Прохождение этапов, за которые за 21 день вырабатывается привычка, подчиняется следующему алгоритму:
+        
+        1. Провести 1 день без обращения к старым привычкам, стараться вести себя так, как будто цель, загаданная в перспективу, находится на расстоянии шага.
+        
+        2. Выдержать 2 дня в прежнем состоянии самоконтроля.
+        
+        3. Отметить в дневнике первую неделю изменений и подвести первые итоги — что оказалось тяжело, что — легче, с чем еще предстоит серьезно бороться.
+        
+        4. Поздравить себя с прохождением первого серьезного порога в 21 день. За это время отказ от дурных наклонностей уже примет форму осознанного преодоления и человек сможет больше работать в сторону принятия положительных качеств.
+        
+        5. Держать планку 40 дней. Практикующий методику уже чувствует себя освободившимся от прошлого негатива и двигается в нужном направлении с хорошей динамикой.
+        
+        6. На 90-й день соблюдения техники все лишнее из «прошлой жизни» перестает напоминать о себе, и человек, оглянувшись назад, осознает себя полностью обновившимся.
+        
+        Источник: psychbook.ru
+        """
+        return label
+    }()
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        view.backgroundColor = .systemBackground
+        self.title = "Информация"
+        view.addSubviews([scrollView])
+        scrollView.addSubviews([contentView, titleLabel, bodyLabel])
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+            
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 22),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            bodyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            bodyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            bodyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            bodyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -22)
+        ])
+    }
+}
